@@ -4,7 +4,7 @@ const morgan = require("morgan")
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
+const db = require("./models/exercise.js");
 
 const path = require('path');
 
@@ -24,13 +24,13 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
 // get requests   
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/index.html"));
+  res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 app.get("/exercise", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/exercise.html"));
+  res.sendFile(path.join(__dirname + "/public/exercise.html"));
 });
 app.get("/stats", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/stats.html"));
+  res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
 // get request for last 7 days
