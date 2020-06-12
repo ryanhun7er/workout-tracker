@@ -33,6 +33,16 @@ app.get("/stats", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/stats.html"));
 });
 
+// get all workouts
+app.get("/api/workouts", (req, res) => {
+  db.find({}).then(dbWorkout => {
+    res.json(dbWorkout);
+  })
+  .catch(err => {
+    res.josn(err);
+  })
+});
+
 // get request for last 7 days
 app.get("/api/workouts/range", (req, res) => {
   db.find({})
@@ -44,8 +54,6 @@ app.get("/api/workouts/range", (req, res) => {
     res.json(err);
   });
 });
-
-//call to create new workout
 
 // get a workout by id and then push an excercise to the array
 app.put("/api/workouts/:id", ({body, params}, res) => {
