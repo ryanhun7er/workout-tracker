@@ -57,6 +57,7 @@ app.get("/api/workouts/range", (req, res) => {
 
 // get a workout by id and then push an excercise to the array
 app.put("/api/workouts/:id", ({body, params}, res) => {
+  console.log(params);
   db.findByIdAndUpdate(params.id, {$push: {exercises: body}}, {new: true, runValidators: true})
   .then(dbWorkout => {
     res.json(dbWorkout);
